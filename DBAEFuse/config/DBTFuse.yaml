@@ -1,0 +1,31 @@
+model:
+  target: models.DBTFuse
+  params:
+    in_channels: 1
+    out_channels: 1
+    num_features: 32
+    channels_list: [4, 8, 16, 32]
+    patch_size: 16
+    num_heads: 16
+    num_layers: 2
+    embed_dim: 1024
+    dropout: 0.1
+    bias: false
+  pretrained: 
+
+train:
+  accumulation_steps: 8
+  epochs: 200
+  optimizer:
+    target: torch.optim.AdamW
+    params:
+      lr: 1.e-4
+
+dataset:
+  ratio: [0.8, 0.2]
+  batch_size: 32
+  shuffle: true
+  url:
+    MSRS: C:/Users/123/Desktop/Fusion/data/traindata/MSRS
+    TNO: C:/Users/123/Desktop/Fusion/data/traindata/TNO
+    Road: C:/Users/123/Desktop/Fusion/data/traindata/Road
